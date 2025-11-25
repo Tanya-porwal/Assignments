@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Random Joke Generator</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    text-align: center;
+    background: #fef6e4;
+    padding: 50px;
+  }
+  #joke {
+    font-size: 1.4em;
+    margin: 20px 0;
+  }
+  button {
+    padding: 10px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    background: #f26419;
+    color: white;
+    border: none;
+    border-radius: 5px;
+  }
+  button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+  }
+</style>
+</head>
+<body>
+
+<h1>Random Joke Generator</h1>
+<div id="joke">Click the button to see a joke!</div>
+<button id="nextJoke">Next Joke</button>
+
+<script>
+const jokeDiv = document.getElementById('joke');
+const button = document.getElementById('nextJoke');
+
+function fetchJoke() {
+    button.disabled = true;
+    fetch('https://official-joke-api.appspot.com/random_joke')
+        .then(response => response.json())
+        .then(data => {
+            jokeDiv.innerHTML = `<p>${data.setup}</p><p><strong>${data.punchline}</strong></p>`;
+            button.disabled = false;
+        })
+        .catch(error => {
+            jokeDiv.textContent = "Oops! Something went wrong.";
+            button.disabled = false;
+        });
+}
+
+button.addEventListener('click', fetchJoke);
+</script>
+
+</body>
+</html>

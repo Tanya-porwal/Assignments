@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Simple Weather App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h2>✨ Weather Whisper ✨</h2>
+
+  <div class="container">
+    <input type="text" id="cityInput" placeholder="Enter city name...">
+    <button id="checkWeather">Check Weather</button>
+  </div>
+
+  <p id="message"></p>
+
+  <div id="weatherBox" class="hidden">
+    <h3 id="cityName"></h3>
+    <p>Temperature: <span id="temp"></span>°C</p>
+    <p>Humidity: <span id="humidity"></span>%</p>
+    <p>Condition: <span id="condition"></span></p>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

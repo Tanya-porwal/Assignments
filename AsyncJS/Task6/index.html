@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sequential Promises</title>
+<style>
+  li {
+    font-size: 1.2em;
+    margin: 5px 0;
+  }
+  .current {
+    font-weight: bold;
+    color: #2a9d8f;
+  }
+</style>
+</head>
+<body>
+
+<h2>Sequential Steps</h2>
+<ul id="steps"></ul>
+
+<script>
+function stepPromise(message) {
+    return new Promise(resolve => {
+        setTimeout(() => resolve(message), 1000);
+    });
+}
+
+async function executeSteps() {
+    const steps = ["Step 1 done", "Step 2 done", "Step 3 done"];
+    const ul = document.getElementById("steps");
+
+    for (let i = 0; i < steps.length; i++) {
+        const li = document.createElement("li");
+        li.textContent = steps[i];
+        li.classList.add("current");
+        ul.appendChild(li);
+
+        await stepPromise(steps[i]);
+
+        li.classList.remove("current");
+    }
+}
+
+executeSteps();
+</script>
+
+</body>
+</html>
